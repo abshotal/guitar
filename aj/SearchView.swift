@@ -6,6 +6,7 @@ struct SearchView: View {
     var body: some View {
         SearchBar(text: $searchText)
             .padding()
+            .background(Color.white)
     }
 }
 

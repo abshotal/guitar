@@ -34,6 +34,7 @@ struct ContentView: View {
                 
                 // Username field
                 TextField("Enter user name", text: $username)
+                    .foregroundColor(.black)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
@@ -45,7 +46,7 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .padding(.bottom, 20)
-                
+                    .foregroundColor(.black)
                 // Error message
                 if let errorMessage = errorMessage {
                     Text(errorMessage)

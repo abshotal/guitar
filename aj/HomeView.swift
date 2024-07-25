@@ -28,16 +28,16 @@ struct HomeView: View {
                             Label("Home", systemImage: "house")
                         }
                         NavigationLink(destination: MoolahView()) {
-                            Label("Moolah 🍲", systemImage: "")
+                            Label("Moolah                               🍲", systemImage: "")
                                 .onTapGesture {
                                     print("taped")
                                 }
                         }
                         NavigationLink(destination: TabeehkView()) {
-                            Label("Tabeehk 🍲", systemImage: "")
+                            Label("Tabeehk                             🍲", systemImage: "")
                         }
                         NavigationLink(destination: SandwichView()) {
-                            Label("Sandwich 🥪", systemImage: "")
+                            Label("Sandwich                           🥪", systemImage: "")
                         }
                         NavigationLink(destination: ProfileView()) {
                             Label("Profile", systemImage: "person.crop.circle")
