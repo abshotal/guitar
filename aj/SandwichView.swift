@@ -2,16 +2,25 @@ import SwiftUI
 
 struct SandwichView: View {
     let items: [ProductItem] = [
-        // Define items for Sandwich category
+        // Define items for Moolah category
+        
+        ProductItem(name: "علي الله", price: 50.0, imageName: "sj"),
+        ProductItem(name: "علي الله", price: 50.0, imageName: "sj1"),
+        ProductItem(name: "علي الله", price: 50.0, imageName: "sj2"),
+        ProductItem(name: "جرتق", price: 50.0, imageName: "jal"),
+        ProductItem(name: "علي الله", price: 50.0, imageName: "jal1"),
+        ProductItem(name: "علي الله", price: 50.0, imageName: "jal2")
     ]
 
     let gridItems = [GridItem(.adaptive(minimum: 150))]
 
     var body: some View {
         VStack {
-            Text("Sandwich Category")
+            
+            Text("Jalabya")
                 .font(.largeTitle)
                 .padding()
+            
 
             ScrollView {
                 LazyVGrid(columns: gridItems, spacing: 20) {

@@ -2,43 +2,52 @@ import SwiftUI
 
 struct HomeView: View {
     let items: [ProductItem] = [
-        ProductItem(name: "Guitar 1", price: 500.0, imageName: "n"),
-        ProductItem(name: "Guitar 2", price: 750.0, imageName: "r"),
-        ProductItem(name: "Guitar 1", price: 500.0, imageName: "r"),
-        ProductItem(name: "Guitar 2", price: 750.0, imageName: "n"),
-        ProductItem(name: "Guitar 1", price: 500.0, imageName: "n"),
-        ProductItem(name: "Guitar 2", price: 750.0, imageName: "r"),
-        ProductItem(name: "Guitar 1", price: 500.0, imageName: "r"),
-        ProductItem(name: "Guitar 2", price: 750.0, imageName: "n")
+        ProductItem(name: " ", price: 500.0, imageName: "r 1"),
+        ProductItem(name: " ", price: 750.0, imageName: "naa"),
+        ProductItem(name: " ", price: 500.0, imageName: "jer"),
+        ProductItem(name: " ", price: 750.0, imageName: "mm"),
+        ProductItem(name: " ", price: 500.0, imageName: "TEA"),
+        ProductItem(name: " ", price: 750.0, imageName: "sj"),
+        ProductItem(name: " ", price: 500.0, imageName: "sj2"),
+        ProductItem(name: " ", price: 750.0, imageName: "jabn")
         // Add more items if needed
     ]
     
     let gridItems = [GridItem(.adaptive(minimum: 150))]
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Text("AJ SHOP")
-                        .font(.largeTitle)
-                        .foregroundColor(.black)
+        NavigationStack {
+                    VStack {
+                        HStack {
+                            // Container for "AJ SHOP" text
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color.blue.opacity(0.5)) // Adjust color and opacity as needed
+                                    .frame(height: 50) // Adjust the height as needed
+                                
+                                Text("AJ SHOP")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal) // Adjust padding as needed
+                            }
                     Spacer()
                     Menu {
                         NavigationLink(destination: HomeView()) {
                             Label("Home", systemImage: "house")
                         }
                         NavigationLink(destination: MoolahView()) {
-                            Label("Moolah                               🍲", systemImage: "")
-                                .onTapGesture {
+                            Label("Neswan                              👩🏾‍🦱", systemImage: "")
+                                .onTapGesture { 
                                     print("taped")
                                 }
                         }
                         NavigationLink(destination: TabeehkView()) {
-                            Label("Tabeehk                             🍲", systemImage: "")
+                            Label("Products                             🍲", systemImage: "")
                         }
                         NavigationLink(destination: SandwichView()) {
-                            Label("Sandwich                           🥪", systemImage: "")
+                            Label("Jalabya                               👳🏿‍♂️", systemImage: "")
                         }
+                        
                         NavigationLink(destination: ProfileView()) {
                             Label("Profile", systemImage: "person.crop.circle")
                         }
