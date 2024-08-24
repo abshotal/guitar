@@ -1,5 +1,6 @@
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
 
 struct AddItemView: View {
     @StateObject private var firestoreManager = FirestoreManager()
@@ -67,16 +68,60 @@ struct AddItemView: View {
             return
         }
 
-        firestoreManager.addItem(name: itemName, price: price, photo: image) { error in
-            if let error = error {
-                alertMessage = "Failed to add item: \(error.localizedDescription)"
-            } else {
-                alertMessage = "Item added successfully!"
-                itemName = ""
-                itemPrice = ""
-                selectedImage = nil
-            }
+        // Convert UIImage to Data
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            alertMessage = "Failed to process image."
             showingAlert = true
+            return
         }
+
+        // Define the path for the image in Firebase Storage
+        let storageRef = Storage.storage().reference().child("images/\(UUID().uuidString).jpg")
+
+        // Upload the image to Firebase Storage
+        storageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                self.alertMessage = "Failed to upload image: \(error.localizedDescription)"
+                self.showingAlert = true
+                return
+            }
+
+            // Retrieve the download URL for the uploaded image
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    self.alertMessage = "Failed to retrieve image URL: \(error.localizedDescription)"
+                    self.showingAlert = true
+                    return
+                }
+
+                guard let imageUrl = url else {
+                    self.alertMessage = "Failed to retrieve image URL."
+                    self.showingAlert = true
+                    return
+                }
+
+                // Add the item to Firestore with the image URL
+                self.firestoreManager.addItem(name: self.itemName, price: price, imageUrl: imageUrl.absoluteString) { error in
+                    if let error = error {
+                        self.alertMessage = "Failed to add item: \(error.localizedDescription)"
+                    } else {
+                        self.alertMessage = "Item added successfully!"
+                        self.itemName = ""
+                        self.itemPrice = ""
+                        self.selectedImage = nil
+                    }
+                    self.showingAlert = true
+                }
+            }
+        }
+    }
+}
+
+
+// Corrected Preview Provider
+struct AddItemView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        AddItemView()  // Corrected from 'ItemVeiw' to 'AddItemView'
     }
 }

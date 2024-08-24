@@ -1,16 +1,16 @@
-//
-//  ajApp.swift
-//  aj
-//
-//  Created by Ab Shotal on 16/07/2024.
-//
-
 import SwiftUI
+import Firebase
 
+@main
 struct ajApp: App {
+    // Add an initializer to configure Firebase
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView() // Replace with your initial view
         }
     }
 }

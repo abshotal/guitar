@@ -51,6 +51,9 @@ struct HomeView: View {
                         NavigationLink(destination: ProfileView()) {
                             Label("Profile", systemImage: "person.crop.circle")
                         }
+                        NavigationLink(destination: AddItemView()) {
+                            Label("sale", systemImage: "person.crop.circle")
+                        }
                         NavigationLink(destination: SettingsView()) {
                             Label("Settings", systemImage: "gear")
                         }
